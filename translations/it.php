@@ -1,0 +1,32 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{mpexportgls}prestashop>mpexportgls_e93639b818668764370aa56d20b42b1b'] = 'MP Esporta per GLS';
+$_MODULE['<{mpexportgls}prestashop>mpexportgls_ae217daf5514e2555ff236c1fc80fb6e'] = 'COn questo modulo puoi esportare tutti gli ordini spediti con GLS';
+$_MODULE['<{mpexportgls}prestashop>mpexportgls_876f23178c29dc2552c0b48bf23cd9bd'] = 'Sei sicuro di volere disinstallare?';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_1b79f407b284afea07b7b37df542c0fa'] = 'Pagina di configurazione: scegli i campi da esportare';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_79e89a64d06a468adaf277526ddc4cc9'] = 'Vai alla pagina di esportazione';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_c9cc8cce247e49bae79f15173ce97354'] = 'Salva';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_8bcdc441379cbf584638b0589a3f9adb'] = 'Codice postale';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_0198d257b2f7e50949d25892ff1a39ce'] = 'Se impostato esposta il codice postale';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_5d4710f9a8250b13164a82c94d5b00d1'] = 'Riferimento ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_d85617f5ce825af40073992180648b10'] = 'Se impostato, esporta il riferimento ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_559e7ca805230fc80e3644f87bb3994d'] = 'Data ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_c23bda797028df832a78c62198c333e3'] = 'Se impostato, esporta la data dell\'ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_22d2c7f90dc862df71ac7aff95183fb2'] = 'Contrassegno';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_b02dc05eb979810353b1429e05fee9d1'] = 'Se impostato, esporta l\'importo dell\'ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_7bfff64eec181bff5d7a449feb0d4e61'] = 'Note dell\'ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_30a45fb0068eabe36cce02a346adda1d'] = 'Se impostato, esporta le note dell\'ordine';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_06469f6f9a0a0422726b0001816652df'] = 'Codice cliente';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_2ad2aab9ed1f9043b55d7260c0d270b1'] = 'Se impostato, esporta il codice cliente';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_03361eda68f746619c2ae3341eaa2f07'] = 'Email cliente';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_30148d9633adcf9640dd76dbbd04bb26'] = 'Se impostato, esporta l\'email del cliente';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_529ef2647fc9649138e0d1e714e3a970'] = 'Cellulare cliente';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_a0e86ff7b5145fbc6a663a4b0c01c1c2'] = 'Se impostato, esporta il cellulare del cliente per l\'invio degli SMS';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_93cba07454f06a4a960172bbd6e2a435'] = 'Si';
+$_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_bafd7322c6e97d25b6299b5d6fe8920b'] = 'No';
+$_MODULE['<{mpexportgls}prestashop>mpinstallclass_ee0615c5fe245baeaca61b6dc3fffee3'] = 'MP Moduli';
+$_MODULE['<{mpexportgls}prestashop>mpinstallclass_56f122cb715982d7e593f121b2726621'] = 'Impossibile disinstallare il menu principale';
+$_MODULE['<{mpexportgls}prestashop>mpinstallclass_f7b594bb4b4130b997b8e0be39e368b2'] = 'Errore durante l\'installazione del menu';
+$_MODULE['<{mpexportgls}prestashop>mpinstallclass_01b1f90071add0165ac52138b6921b21'] = 'Impossibile rimuovere il menu';

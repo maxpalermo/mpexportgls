@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>mpexportgls</name>
+	<displayName><![CDATA[MP Export GLS]]></displayName>
+	<version><![CDATA[1.0.0]]></version>
+	<description><![CDATA[With this module you can export an excel sheet with orders delivered by GLS]]></description>
+	<author><![CDATA[Massimiliano Palermo]]></author>
+	<tab><![CDATA[administration]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+</module>
