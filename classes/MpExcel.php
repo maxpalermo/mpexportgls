@@ -49,12 +49,11 @@ class MpExcel
         $objPHPExcel->setActiveSheetIndex(0);
         $activeSheet = $objPHPExcel->getActiveSheet();
         $idx_row = 1;
-        foreach ($content as $row)
-        {
+        foreach ($content as $row) {
             //Write Headers
             if ($idx_row == 1) {
                 $idx_col = 0;
-                foreach ($row as $key=>$col) {
+                foreach ($row as $key => $col) {
                     $activeSheet->setCellValueByColumnAndRow($idx_col, 1, Tools::strtoupper($key));
                     $idx_col++;
                 }

@@ -229,7 +229,7 @@ class MpExportGlsConfig
         $key = Tools::strtoupper('MP_GLS_'.$name);
         if (Tools::isSubmit('submit_form')) {
             $value = Tools::getValue($name, 0);
-            ConfigurationCore::updateValue($key, implode(',',$value));
+            ConfigurationCore::updateValue($key, implode(',', $value));
         } else {
             $value = explode(",", ConfigurationCore::get($key));
         }
@@ -262,7 +262,7 @@ class MpExportGlsConfig
         $key = Tools::strtoupper('MP_GLS_'.$name);
         if (Tools::isSubmit('submit_form')) {
             $value = Tools::getValue($name, 0);
-            ConfigurationCore::updateValue($key, implode(',',$value));
+            ConfigurationCore::updateValue($key, implode(',', $value));
         } else {
             $value = explode(",", ConfigurationCore::get($key));
         }

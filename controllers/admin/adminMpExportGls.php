@@ -74,29 +74,30 @@ class AdminMpExportGlsController extends ModuleAdminController
     }
     
     public function displayExportLink($token = null, $id = 0, $name = null)
-	{
-		if (!array_key_exists('Export', self::$cache_lang)) {
-			self::$cache_lang['Export'] = $this->l('Export');
+    {
+        if (!array_key_exists('Export', self::$cache_lang)) {
+            self::$cache_lang['Export'] = $this->l('Export');
         }
-        
+
         if (!$token) {
             $token = Tools::getAdminTokenLite($this->name);
         }
-        
+
         $currentIndex = $this->link->getAdminLink($this->name, false)
-            .'&id_order='.$id
-            .'&export'
-            .'&table=orders'
-            .'&token='.$token;
-	
-		$this->smarty->assign(array(
-				'href' => $currentIndex,
-				'action' => self::$cache_lang['Export'],
-				'id' => $id
-		));
-        
+            . '&id_order=' . $id
+            . '&export'
+            . '&table=orders'
+            . '&token=' . $token
+            . '&name=' . $name;
+
+        $this->smarty->assign(array(
+            'href' => $currentIndex,
+            'action' => self::$cache_lang['Export'],
+            'id' => $id
+        ));
+
         //print "<pre>BUTTON -> token: ".$token.', id: '.$id.', name: '.$name.', href: '.$currentIndex."</pre>";
-        
-		return $this->smarty->fetch($this->module->getPath().'views/templates/admin/list_action_export.tpl');
-	}
+
+        return $this->smarty->fetch($this->module->getPath() . 'views/templates/admin/list_action_export.tpl');
+    }
 }

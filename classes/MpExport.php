@@ -56,7 +56,7 @@ class MpExport
             'customer_email' => 'input_switch_customer_email',
             'customer_mobile_phone' => 'input_switch_mobile_phone',
         );
-        foreach ($fields as $key=>$field) {
+        foreach ($fields as $key => $field) {
             $field = Tools::strtoupper($field);
             $this->$key = (int)ConfigurationCore::get($prefix.$field);
         }
@@ -168,7 +168,7 @@ class MpExport
     protected function ucFirst($str)
     {
         $parts = explode(' ', $str);
-        foreach($parts as &$part) {
+        foreach ($parts as &$part) {
             $part = Tools::ucfirst($part);
         }
         return implode(' ', $parts);

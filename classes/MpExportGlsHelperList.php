@@ -87,8 +87,20 @@ class MpExportGlsHelperList extends HelperListCore
         $this->addText($list, $this->module->l('Id order', get_class($this)), 'id_order', 32, 'text-right');
         $this->addDate($list, $this->module->l('Order date', get_class($this)), 'order_date', 'auto', 'text-center');
         $this->addDate($list, $this->module->l('Order state', get_class($this)), 'order_state', 'auto', 'text-left');
-        $this->addPrice($list, $this->module->l('Order amount', get_class($this)), 'order_amount', 'auto', 'text-right');
-        $this->addHtml($list, $this->module->l('Cash on delivery', get_class($this)), 'cash_on_delivery', 32, 'text-center');
+        $this->addPrice(
+            $list,
+            $this->module->l('Order amount', get_class($this)),
+            'order_amount',
+            'auto',
+            'text-right'
+        );
+        $this->addHtml(
+            $list,
+            $this->module->l('Cash on delivery', get_class($this)),
+            'cash_on_delivery',
+            32,
+            'text-center'
+        );
         $this->addText($list, $this->module->l('Customer', get_class($this)), 'customer', 'auto', 'text-left');
         
         return $list;
@@ -149,7 +161,7 @@ class MpExportGlsHelperList extends HelperListCore
 
     protected function addIcon($icon, $color)
     {
-        return "<i class='icon $icon' style='color: $color;'></i>"; 
+        return "<i class='icon $icon' style='color: $color;'></i>";
     }
     
     protected function getList()
@@ -231,8 +243,7 @@ class MpExportGlsHelperList extends HelperListCore
         $result = $db->executeS($sql);
         
         if ($result) {
-            foreach ($result as &$row)
-            {
+            foreach ($result as &$row) {
                 if ($row['module'] == $cash_module) {
                     $row['cash_on_delivery'] = $this->addIcon('icon-check', '#79BB79');
                 } else {
@@ -248,7 +259,7 @@ class MpExportGlsHelperList extends HelperListCore
     public function ucFirst($str)
     {
         $parts = explode(' ', $str);
-        foreach($parts as $part) {
+        foreach ($parts as $part) {
             $part = Tools::ucfirst($part);
         }
         return implode(' ', $parts);

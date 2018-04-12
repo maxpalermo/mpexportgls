@@ -76,7 +76,7 @@ class MpInstallClass
     }
     
     /**
-     * 
+     * Install New tab
      * @param string $parent Parent tab name
      * @param type $class_name Class name of the module
      * @param type $name Display name of the module
@@ -116,7 +116,7 @@ class MpInstallClass
     }
     
     /**
-     * 
+     * Uninstall tab
      * @param string pe $class_name Class name of the module
      * @return boolean True if successfull, False otherwise
      */
@@ -132,5 +132,4 @@ class MpInstallClass
             return $result;
         }
     }
-
 }

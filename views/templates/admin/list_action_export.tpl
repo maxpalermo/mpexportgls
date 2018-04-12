@@ -23,6 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<a href="{$href}" class="btn btn-default" value="$id">
-    <i class="icon icon-upload-alt" /></i> {$action}
+<a href="{$href|escape:'htmlall':'UTF-8'}" class="btn btn-default" value="$id">
+    <i class="icon icon-upload-alt" /></i> {$action|escape:'htmlall':'UTF-8'}
 </a>
