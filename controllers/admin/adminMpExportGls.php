@@ -59,7 +59,7 @@ class AdminMpExportGlsController extends ModuleAdminController
         /**
          * CHECK EXPORT FLAG
          */
-        if (Tools::isSubmit('export') || Tools::isSubmit('configurationBox')) {
+        if (Tools::isSubmit('export') || Tools::isSubmit('configurationBox') || Tools::isSubmit('exportAll')) {
             require_once $this->module->getPath().'vendor/PHPExcel.php';
             require_once $this->module->getPath().'classes/MpExcel.php';
             require_once $this->module->getPath().'classes/MpExport.php';

@@ -48,27 +48,24 @@ class MpExcel
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
         $activeSheet = $objPHPExcel->getActiveSheet();
-        $idx_row = 0;
+        $idx_row = 1;
         foreach ($content as $row)
         {
             //Write Headers
-            if ($idx_row == 0) {
+            if ($idx_row == 1) {
                 $idx_col = 0;
                 foreach ($row as $key=>$col) {
-                    $activeSheet->setCellValueByColumnAndRow($idx_col, $idx_row, Tools::strtoupper($key));
-                    $activeSheet->setCellValueByColumnAndRow($idx_col, $idx_row+1, Tools::strtoupper($key));
+                    $activeSheet->setCellValueByColumnAndRow($idx_col, 1, Tools::strtoupper($key));
                     $idx_col++;
                 }
-                $idx_row++;
-                $idx_row++;
-            } else {
-                $idx_col = 0;
-                foreach ($row as $col) {
-                    $activeSheet->setCellValueByColumnAndRow($idx_col, $idx_row, $col);
-                    $idx_col++;
-                }
-                $idx_row++;
+                $idx_row = 2;
             }
+            $idx_col = 0;
+            foreach ($row as $col) {
+                $activeSheet->setCellValueByColumnAndRow($idx_col, $idx_row, $col);
+                $idx_col++;
+            }
+            $idx_row++;
         }
         
         // We'll be outputting an excel file

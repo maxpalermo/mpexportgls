@@ -36,6 +36,7 @@ class MpExportGlsAdminPage
     protected $forms;
     protected $values;
     protected $id_lang;
+    protected $cookie;
     
     public function __construct($module)
     {
@@ -45,13 +46,17 @@ class MpExportGlsAdminPage
         $this->forms = array();
         $this->values = array();
         $this->id_lang = (int)$this->context->language->id;
+        $this->cookie = Context::getContext()->cookie;
     }
     
     public function getContent()
     {
-        if (Tools::isSubmit('submit_form')) {
+        if (Tools::isSubmit('submit_form') || Tools::isSubmit('page')) {
             return $this->initForm().$this->initList();
         } else {
+            $this->cookie->__unset('input_date_start');
+            $this->cookie->__unset('input_date_end');
+            $this->cookie->__unset('input_select_order_states');
             return $this->initForm();
         }
     }
@@ -92,7 +97,7 @@ class MpExportGlsAdminPage
     {
         $form = array(
             'legend' => array(
-                'title' => $this->module->l('Export GLS: choose orders you want to export.'),
+                'title' => $this->module->l('Export GLS: choose orders you want to export.', get_class($this)),
                 'icon' => 'icon-list',
             ),
             'input' => array(
@@ -100,13 +105,13 @@ class MpExportGlsAdminPage
             ),
             'buttons' => array(
                 'back' => array(
-                    'title' => $this->module->l('Go to control panel'),
-                    'href' => $this->link->getAdminLink('AdminDashboard'),
+                    'title' => $this->module->l('Go to control panel', get_class($this)),
+                    'href' => $this->link->getAdminLink('AdminDashboard', get_class($this)),
                     'icon' => 'process-icon-back',
                 ),
                 'config' => array(
-                    'title' => $this->module->l('Go to config panel'),
-                    'href' => $this->link->getAdminLink('AdminModules')
+                    'title' => $this->module->l('Go to config panel', get_class($this)),
+                    'href' => $this->link->getAdminLink('AdminModules', get_class($this))
                         .'&configure='.$this->module->name
                         .'&tab_module=administration'
                         .'&module_name='.$this->module->name,
@@ -114,7 +119,7 @@ class MpExportGlsAdminPage
                 ),
             ),
             'submit' => array(
-                'title' => $this->module->l('Find'),
+                'title' => $this->module->l('Find', get_class($this)),
                 'icon' => 'process-icon-ok',
             ),
         );
@@ -122,22 +127,22 @@ class MpExportGlsAdminPage
         
         $this->addSelectOrderStates(
             $form,
-            $this->module->l('Order state'),
-            $this->module->l('Select order state to export'),
+            $this->module->l('Order state', get_class($this)),
+            $this->module->l('Select order state to export', get_class($this)),
             'input_select_order_states'
         );
         
         $this->addDate(
             $form,
-            $this->module->l('Date start'),
-            $this->module->l('Select start date to find orders'),
+            $this->module->l('Date start', get_class($this)),
+            $this->module->l('Select start date to find orders', get_class($this)),
             'input_date_start'
         );
         
         $this->addDate(
             $form,
-            $this->module->l('Date end'),
-            $this->module->l('Select end date to find orders'),
+            $this->module->l('Date end', get_class($this)),
+            $this->module->l('Select end date to find orders', get_class($this)),
             'input_date_end'
         );
         
@@ -160,12 +165,12 @@ class MpExportGlsAdminPage
                 array(
                     'id' => $name.'_on',
                     'value' => 1,
-                    'label' => $this->module->l('Yes'),
+                    'label' => $this->module->l('Yes', get_class($this)),
                 ),
                 array(
                     'id' => $name.'_off',
                     'value' => 0,
-                    'label' => $this->module->l('No'),
+                    'label' => $this->module->l('No', get_class($this)),
                 ),
 
             ),
@@ -242,6 +247,10 @@ class MpExportGlsAdminPage
          * GET CONFIGURATION VALUE
          */
         $value = Tools::getValue($name, array());
+        if (Tools::isSubmit('page')) {
+            $value = explode(',', $this->cookie->$name);
+        }
+        $this->cookie->$name = implode(',', $value);
         $this->values[$name.'[]'] = $value;
     }
     
@@ -260,6 +269,10 @@ class MpExportGlsAdminPage
          * GET CONFIGURATION VALUE
          */
         $value = Tools::getValue($name, '');
+        if (Tools::isSubmit('page')) {
+            $value = $this->cookie->$name;
+        }
+        $this->cookie->$name = $value;
         $this->values[$name] = $value;
     }
     

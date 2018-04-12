@@ -66,16 +66,32 @@ class MpExport
     
     public function export()
     {
+        $this->result = array();
         if (Tools::isSubmit('export')) {
-            return $this->exportSingle();
+            $this->exportSingle();
+        } elseif (Tools::isSubmit('exportAll')) {
+            $this->exportAll();
         } else {
-            return $this->exportBulk();
+            $this->exportBulk();
+        }
+        return $this->result;
+    }
+    
+    protected function exportAll()
+    {
+        $db = Db::getInstance();
+        $result = $db->executeS(Context::getContext()->cookie->export_query);
+        foreach ($result as $row) {
+            $this->createRow($row['id_order']);
         }
     }
     
     protected function exportSingle()
     {
-        print "<pre> SINGLE:".print_r(Tools::getAllValues(),1)."</pre>";
+        $id_order = (int)Tools::getValue('id_order', 0);
+        if ($id_order) {
+            $this->createRow($id_order);
+        }
     }
     
     protected function exportBulk()
@@ -84,7 +100,6 @@ class MpExport
         foreach ($id_orders as $id_order) {
             $this->createRow($id_order);
         }
-        return $this->result;
     }
     
     protected function createRow($id_order)
@@ -147,6 +162,7 @@ class MpExport
         }
         
         $this->result[] = $row;
+        return $row;
     }
     
     protected function ucFirst($str)

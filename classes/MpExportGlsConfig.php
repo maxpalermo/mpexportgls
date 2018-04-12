@@ -81,7 +81,7 @@ class MpExportGlsConfig
     {
         $form = array(
             'legend' => array(
-                'title' => $this->module->l('Configuration page: choose fields you want to export.'),
+                'title' => $this->module->l('Configuration page: choose fields you want to export.', get_class($this)),
                 'icon' => 'icon-cogs',
             ),
             'input' => array(
@@ -89,74 +89,74 @@ class MpExportGlsConfig
             ),
             'buttons' => array(
                 'export' => array(
-                    'title' => $this->module->l('Go to export page'),
+                    'title' => $this->module->l('Go to export page', get_class($this)),
                     'href' => $this->module->getAdminModuleController(),
                     'icon' => 'process-icon-upload',
                 ),
             ),
             'submit' => array(
-                'title' => $this->module->l('Save'),
+                'title' => $this->module->l('Save', get_class($this)),
             ),
         );
         
         $this->addSwitch(
             $form,
-            $this->module->l('Postcode'),
-            $this->module->l('If set, exports postcode'),
+            $this->module->l('Postcode', get_class($this)),
+            $this->module->l('If set, exports postcode', get_class($this)),
             'input_switch_postcode'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Order reference'),
-            $this->module->l('If set, exports order reference'),
+            $this->module->l('Order reference', get_class($this)),
+            $this->module->l('If set, exports order reference', get_class($this)),
             'input_switch_order_reference'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Order date'),
-            $this->module->l('If set, exports order date'),
+            $this->module->l('Order date', get_class($this)),
+            $this->module->l('If set, exports order date', get_class($this)),
             'input_switch_order_date'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Cash on delivery'),
-            $this->module->l('If set, exports order amount'),
+            $this->module->l('Cash on delivery', get_class($this)),
+            $this->module->l('If set, exports order amount', get_class($this)),
             'input_switch_cash_delivery'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Order notes'),
-            $this->module->l('If set, exports order notes'),
+            $this->module->l('Order notes', get_class($this)),
+            $this->module->l('If set, exports order notes', get_class($this)),
             'input_switch_order_notes'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Customer id'),
-            $this->module->l('If set, exports cutomer id'),
+            $this->module->l('Customer id', get_class($this)),
+            $this->module->l('If set, exports cutomer id', get_class($this)),
             'input_switch_customer_id'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Customer email'),
-            $this->module->l('If set, exports customer email'),
+            $this->module->l('Customer email', get_class($this)),
+            $this->module->l('If set, exports customer email', get_class($this)),
             'input_switch_customer_email'
         );
         $this->addSwitch(
             $form,
-            $this->module->l('Customer mobile phone'),
-            $this->module->l('If set, exports customer mobile phone'),
+            $this->module->l('Customer mobile phone', get_class($this)),
+            $this->module->l('If set, exports customer mobile phone', get_class($this)),
             'input_switch_mobile_phone'
         );
         $this->addSelectCarriers(
             $form,
-            $this->module->l('Carrier'),
-            $this->module->l('Select GLS carriers'),
+            $this->module->l('Carrier', get_class($this)),
+            $this->module->l('Select GLS carriers', get_class($this)),
             'input_select_carriers'
         );
         $this->addSelectPaymentModules(
             $form,
-            $this->module->l('Cash on delivery'),
-            $this->module->l('Select cash on delivery payment module'),
+            $this->module->l('Cash on delivery', get_class($this)),
+            $this->module->l('Select cash on delivery payment module', get_class($this)),
             'input_select_payment_modules'
         );
         
@@ -178,12 +178,12 @@ class MpExportGlsConfig
                 array(
                     'id' => $name.'_on',
                     'value' => 1,
-                    'label' => $this->module->l('Yes'),
+                    'label' => $this->module->l('Yes', get_class($this)),
                 ),
                 array(
                     'id' => $name.'_off',
                     'value' => 0,
-                    'label' => $this->module->l('No'),
+                    'label' => $this->module->l('No', get_class($this)),
                 ),
 
             ),

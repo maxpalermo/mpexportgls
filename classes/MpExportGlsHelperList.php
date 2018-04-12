@@ -35,6 +35,7 @@ class MpExportGlsHelperList extends HelperListCore
     public $id_lang;
     public $module;
     public $link;
+    protected $cookie;
     
     public function __construct($module)
     {
@@ -44,13 +45,11 @@ class MpExportGlsHelperList extends HelperListCore
         $this->values = array();
         $this->id_lang = (int)$this->context->language->id;
         parent::__construct();
+        $this->cookie = Context::getContext()->cookie;
     }
     
     public function initList()
     {
-        $list = $this->getList();
-        $fields_display = $this->getFields();
-        
         $this->bootstrap = true;
         $this->actions = array('export');
         $this->bulk_actions = array(
@@ -62,15 +61,23 @@ class MpExportGlsHelperList extends HelperListCore
         );
         $this->currentIndex = $this->link->getAdminLink($this->module->getAdminClassName(), false);
         $this->identifier = 'id_order';
-        $this->listTotal = count($list);
         $this->no_link = true;
-        $this->page = 1;
-        $this->_default_pagination = 50;
+        $this->page = Tools::getValue('submitFilterconfiguration', 1);
+        $this->_default_pagination = Tools::getValue('configuration_pagination', 50);
         $this->show_toolbar = true;
-        $this->toolbar_btn = array();
+        $this->toolbar_btn = array(
+            'export' => array(
+                'desc' => $this->l('Export all'),
+                'href' => $this->context->link->getAdminLink($this->module->getAdminClassName()).'&exportAll',
+            )
+        );
         $this->shopLinkType='';
         $this->simple_header = false;
         $this->token = Tools::getAdminTokenLite($this->module->getAdminClassName());
+        $this->title = $this->module->l('Orders found', get_class($this));
+        $list = $this->getList();
+        $fields_display = $this->getFields();
+        
         return $this->generateList($list, $fields_display);
     }
     
@@ -147,7 +154,16 @@ class MpExportGlsHelperList extends HelperListCore
     
     protected function getList()
     {
-        $order_states = Tools::getValue('input_select_order_states', array());
+        if (Tools::isSubmit('page')) {
+            $date_start = $this->cookie->input_date_start;
+            $date_end = $this->cookie->input_date_end;
+            $order_states = $this->cookie->input_select_order_states;
+        } else {
+            $date_start = Tools::getValue('date_start', '');
+            $date_end = Tools::getValue('date_end', '');
+            $order_states = Tools::getValue('input_select_order_states', array());
+        }
+        
         if (!$order_states) {
             $order_states = '';
         } else {
@@ -161,10 +177,9 @@ class MpExportGlsHelperList extends HelperListCore
         if (!$cash_module) {
             $cash_module = '';
         }
-        $date_start = Tools::getValue('date_start', '');
-        $date_end = Tools::getValue('date_end', '');
         
         $db = Db::getInstance();
+        
         $sql = new DbQueryCore();
         $sql->select('o.id_order')
             ->select('o.date_add as order_date')
@@ -175,21 +190,43 @@ class MpExportGlsHelperList extends HelperListCore
             ->from('orders', 'o')
             ->innerJoin('order_state_lang', 'osl', 'o.current_state=osl.id_order_state')
             ->innerJoin('customer', 'c', 'c.id_customer=o.id_customer')
-            ->orderBy('o.date_add');
+            ->orderBy('o.date_add DESC')
+            ->orderBy('o.id_order DESC');
+        
+        $sql_count = new DbQueryCore();
+        $sql_count->select('count(*)')
+            ->from('orders', 'o')
+            ->innerJoin('order_state_lang', 'osl', 'o.current_state=osl.id_order_state')
+            ->innerJoin('customer', 'c', 'c.id_customer=o.id_customer')
+            ->orderBy('o.date_add DESC')
+            ->orderBy('o.id_order DESC');
+        
         if ($date_start) {
             $date_start .= ' 00:00:00';
             $sql->where('o.date_add >= \''.pSQL($date_start).'\'');
+            $sql_count->where('o.date_add >= \''.pSQL($date_start).'\'');
         }
         if ($date_end) {
             $date_end .= ' 23:59:59';
             $sql->where('o.date_add <= \''.pSQL($date_end).'\'');
+            $sql_count->where('o.date_add <= \''.pSQL($date_end).'\'');
         }
         if ($order_states) {
             $sql->where('o.current_state in ('.pSQL($order_states).')');
+            $sql_count->where('o.current_state in ('.pSQL($order_states).')');
         }
         if ($carriers) {
             $sql->where('o.id_carrier in ('.pSQL($carriers).')');
+            $sql_count->where('o.id_carrier in ('.pSQL($carriers).')');
         }
+        
+        $this->listTotal = $db->getValue($sql_count);
+        
+        //Save query in cookies
+        Context::getContext()->cookie->export_query = $sql->build();
+        
+        //Set Pagination
+        $sql->limit($this->_default_pagination, ($this->page-1)*$this->_default_pagination);
         
         $result = $db->executeS($sql);
         
