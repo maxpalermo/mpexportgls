@@ -54,8 +54,8 @@ class MpExportGlsHelperList extends HelperListCore
         $this->actions = array('export');
         $this->bulk_actions = array(
             'export' => array(
-                'text' => $this->l('Export selected'),
-                'confirm' => $this->l('Export selected orders?'),
+                'text' => $this->module->l('Export selected', get_class($this)),
+                'confirm' => $this->module->l('Export selected orders?', get_class($this)),
                 'icon' => 'icon-upload',
             ),
         );
@@ -67,7 +67,7 @@ class MpExportGlsHelperList extends HelperListCore
         $this->show_toolbar = true;
         $this->toolbar_btn = array(
             'export' => array(
-                'desc' => $this->l('Export all'),
+                'desc' => $this->module->l('Export all', get_class($this)),
                 'href' => $this->context->link->getAdminLink($this->module->getAdminClassName()).'&exportAll',
             )
         );
@@ -84,12 +84,12 @@ class MpExportGlsHelperList extends HelperListCore
     protected function getFields()
     {
         $list = array();
-        $this->addText($list, $this->l('Id order'), 'id_order', 32, 'text-right');
-        $this->addDate($list, $this->l('Order date'), 'order_date', 'auto', 'text-center');
-        $this->addDate($list, $this->l('Order state'), 'order_state', 'auto', 'text-left');
-        $this->addPrice($list, $this->l('Order amount'), 'order_amount', 'auto', 'text-right');
-        $this->addHtml($list, $this->l('Cash on delivery'), 'cash_on_delivery', 'auto', 'text-center');
-        $this->addText($list, $this->l('Customer'), 'customer', 'auto', 'text-left');
+        $this->addText($list, $this->module->l('Id order', get_class($this)), 'id_order', 32, 'text-right');
+        $this->addDate($list, $this->module->l('Order date', get_class($this)), 'order_date', 'auto', 'text-center');
+        $this->addDate($list, $this->module->l('Order state', get_class($this)), 'order_state', 'auto', 'text-left');
+        $this->addPrice($list, $this->module->l('Order amount', get_class($this)), 'order_amount', 'auto', 'text-right');
+        $this->addHtml($list, $this->module->l('Cash on delivery', get_class($this)), 'cash_on_delivery', 32, 'text-center');
+        $this->addText($list, $this->module->l('Customer', get_class($this)), 'customer', 'auto', 'text-left');
         
         return $list;
     }

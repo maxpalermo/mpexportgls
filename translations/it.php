@@ -43,6 +43,8 @@ $_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_93cba07454f06a4a960172bbd6e
 $_MODULE['<{mpexportgls}prestashop>mpexportglsconfig_bafd7322c6e97d25b6299b5d6fe8920b'] = 'No';
 $_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_d4f39d7e50684fca5f5a817cb7342f3e'] = 'Esporta gli ordini selezionati';
 $_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_6426e3f0bb25698ebe1ca467350bbffc'] = 'Esportare gli ordini selezionati?';
+$_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_c48f01c5aed693b0c4c246e116f3f75a'] = 'Esporta tutto';
+$_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_b04b1f571b618552f2a9b85637831bdd'] = 'Ordini trovati';
 $_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_35a82907e1c8cd3e81555f2ff13e61a1'] = 'Id ordine';
 $_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_559e7ca805230fc80e3644f87bb3994d'] = 'Data ordine';
 $_MODULE['<{mpexportgls}prestashop>mpexportglshelperlist_d02bbc3cb147c272b0445ac5ca7d1a36'] = 'Stato dell\'ordine';

@@ -48,13 +48,13 @@ class MpExport
         $prefix = 'MP_GLS_';
         $fields = array(
             'postcode' => 'input_switch_postcode',
-            'order_reference' => 'input_switch_reference',
+            'order_reference' => 'input_switch_order_reference',
             'order_date' => 'input_switch_order_date',
             'cash_on_delivery' => 'input_switch_cash_delivery',
             'order_notes' => 'input_switch_order_notes',
             'customer_id' => 'input_switch_customer_id',
             'customer_email' => 'input_switch_customer_email',
-            'customer_mobile_phone' => 'input_switch_customer_mobile_phone',
+            'customer_mobile_phone' => 'input_switch_mobile_phone',
         );
         foreach ($fields as $key=>$field) {
             $field = Tools::strtoupper($field);
@@ -139,7 +139,7 @@ class MpExport
 
         if ($this->cash_on_delivery) {
             if ($this->module_payment == $order->module) {
-                $row['order_amount'] = $order->total_paid;
+                $row['order_amount'] = sprintf("%.2f", round($order->total_paid, 2));
             } else {
                 $row['order_amount'] = 0;
             }
