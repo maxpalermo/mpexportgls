@@ -153,6 +153,12 @@ class MpExportGlsConfig
             $this->module->l('Select GLS carriers'),
             'input_select_carriers'
         );
+        $this->addSelectPaymentModules(
+            $form,
+            $this->module->l('Cash on delivery'),
+            $this->module->l('Select cash on delivery payment module'),
+            'input_select_payment_modules'
+        );
         
         $this->forms = array(
             'form' => $form,
@@ -212,6 +218,39 @@ class MpExportGlsConfig
             'options' => array(
                 'query' => CarrierCore::getCarriers($this->id_lang),
                 'id' => 'id_carrier',
+                'name' => 'name',
+            ),
+        );
+        $form['input'][] = $select;
+        
+        /**
+         * UPDATE CONFIGURATION
+         */
+        $key = Tools::strtoupper('MP_GLS_'.$name);
+        if (Tools::isSubmit('submit_form')) {
+            $value = Tools::getValue($name, 0);
+            ConfigurationCore::updateValue($key, implode(',',$value));
+        } else {
+            $value = explode(",", ConfigurationCore::get($key));
+        }
+        /**
+         * GET CONFIGURATION VALUE
+         */
+        $this->values[$name.'[]'] = $value;
+    }
+    
+    protected function addSelectPaymentModules(&$form, $label, $desc, $name)
+    {
+        $select = array(
+            'type' => 'select',
+            'label' => $label,
+            'desc' => $desc,
+            'name' => $name,
+            'multiple' => true,
+            'class' => 'chosen fixed-width-xxl',
+            'options' => array(
+                'query' => PaymentModuleCore::getInstalledPaymentModules(),
+                'id' => 'name',
                 'name' => 'name',
             ),
         );

@@ -41,6 +41,11 @@ class MpExportGls extends Module
     protected $config;
     protected $adminClassName = 'AdminMpExportGls';
     
+    public function getAdminClassName()
+    {
+        return $this->adminClassName;
+    }
+    
     public function getAdminModuleController()
     {
         $link = new LinkCore();
